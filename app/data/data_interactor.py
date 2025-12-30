@@ -1,46 +1,45 @@
 """
-This file should handle both the MongoDB connection AND all CRUD operations:
+This file handles AND all CRUD operations:
 
-Create MongoDB connection (using environment variables for host/port)
 create_contact(contact_data: dict) → returns new contact ID as string
 get_all_contacts() → returns list of Contact objects
 update_contact(id: str, contact_data: dict) → returns success boolean
 delete_contact(id: str) → returns success boolean
 
-Handle errors with appropriate HTTP status codes
-
+Handles errors with appropriate HTTP status codes
 """
-
 from typing import List
 from app.data.db_use import db
 
 
-# ------------------------
-# Contact Model Class
-# ------------------------
-class Contact:
-    def __init__(self, id: int, first_name: str, last_name: str, phone_number: str):
-        self.id = id
-        self.first_name = first_name
-        self.last_name = last_name
-        self.phone_number = phone_number
-
-    def to_dict(self) -> dict:
-        return {
-            "id": self.id,
-            "first_name": self.first_name,
-            "last_name": self.last_name,
-            "phone_number": self.phone_number,
-        }
+# contact fields to dict
+def to_dict(first_name,last_name,phone_number) -> dict:
+    return {
+        "first_name": first_name,
+        "last_name": last_name,
+        "phone_number": phone_number,
+    }
 
 
 # ------------------------
 # CRUD Functions
 # ------------------------
 #examples ----------
-def create_contact(Contact: Contact):
-    Contact_dict = Contact.dict()
-    result = db.Contacts.insert_one(Contact_dict)
+def create_contact(first_name: str, last_name: str, phone_number: str) -> int:
+    print("""
+********************************************************
+********************************************************
+********************************************************
+********************************************************
+          STARTING
+********************************************************
+********************************************************
+********************************************************
+********************************************************
+          """)
+    print(first_name,last_name,phone_number)
+    contact_dict = to_dict(first_name,last_name,phone_number)
+    result = db.Contacts.insert_one(contact_dict)
     return str(result.inserted_id)
 
 def get_all_contacts():

@@ -1,3 +1,8 @@
+"""
+This file handles the MongoDB connection:
+    Create MongoDB connection (using environment variables for host/port)
+    Basic connection test
+"""
 from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
