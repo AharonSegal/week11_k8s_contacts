@@ -29,6 +29,20 @@ class ContactUpdateSchema(BaseModel):
     last_name: Optional[str] = None
     phone_number: Optional[str] = None
 
+# ------------------------
+# Helpers
+# ------------------------
+"""
+makes the response dict
+dict of contact including id
+"""
+def contact_helper(contact: dict) -> dict:
+    return {
+        "id": str(contact["_id"]),
+        "first_name": contact["first_name"],
+        "last_name": contact["last_name"],
+        "phone_number": contact["phone_number"],
+    }
 
 # ------------------------
 # API Endpoints
@@ -54,14 +68,13 @@ def create_contact(contact: ContactSchema):
 """
 - Returns Contact collection list
 """
-# @router.get("/", response_model=list[ContactResponse])
-# def list_contacts():
-#     try:
-#         contacts = db_get_all_contacts()
-#         # contacts to dicts
-#         return [c.to_dict() for c in contacts]
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=str(e))
+@router.get("/", response_model=list[ContactResponse])
+def list_contacts():
+    try:
+        contacts = db_get_all_contacts()
+        return [contact_helper(c) for c in contacts]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 # @router.put("/{contact_id}")

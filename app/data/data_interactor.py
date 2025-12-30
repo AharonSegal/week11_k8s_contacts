@@ -7,6 +7,12 @@ update_contact(id: str, contact_data: dict) → returns success boolean
 delete_contact(id: str) → returns success boolean
 
 Handles errors with appropriate HTTP status codes
+
+preview of a contact in the db:
+    {'_id': ObjectId('6953af2451d6e1be82767fd1'), 
+    'first_name': 'Korey', 
+    'last_name': 'Steward', 
+    'phone_number': '077-7934083'}
 """
 from typing import List
 from app.data.db_use import db
@@ -26,25 +32,15 @@ def to_dict(first_name,last_name,phone_number) -> dict:
 # ------------------------
 #examples ----------
 def create_contact(first_name: str, last_name: str, phone_number: str) -> int:
-    print("""
-********************************************************
-********************************************************
-********************************************************
-********************************************************
-          STARTING
-********************************************************
-********************************************************
-********************************************************
-********************************************************
-          """)
-    print(first_name,last_name,phone_number)
     contact_dict = to_dict(first_name,last_name,phone_number)
     result = db.Contacts.insert_one(contact_dict)
     return str(result.inserted_id)
 
 def get_all_contacts():
-    return list(db.Contacts.find({}, {"_id": 0}))
-#examples ----------
+    contacts = db.Contacts.find()
+    # contacts is a object <pymongo.synchronous.cursor.Cursor object>
+    # convert this obj to list
+    return list(contacts)
 
 
 

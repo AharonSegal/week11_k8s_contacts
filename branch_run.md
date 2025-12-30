@@ -44,3 +44,8 @@ use fastapi_db_container
 # Show collections in that database
 show collections
 db.items.find().pretty()
+
+
+
+
+
