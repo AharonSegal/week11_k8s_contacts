@@ -40,7 +40,7 @@ cat .env
 ### Run FastAPI locally
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn main:app --reload
 ```
 
 ### Stop and remove MongoDB container when done

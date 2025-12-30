@@ -12,7 +12,7 @@ Handle errors with appropriate HTTP status codes
 """
 
 from typing import List
-from data.db_use import db
+from app.data.db_use import db
 
 
 # ------------------------
@@ -38,12 +38,12 @@ class Contact:
 # CRUD Functions
 # ------------------------
 #examples ----------
-def create_Contact(Contact: Contact):
+def create_contact(Contact: Contact):
     Contact_dict = Contact.dict()
     result = db.Contacts.insert_one(Contact_dict)
     return str(result.inserted_id)
 
-def get_Contacts():
+def get_all_contacts():
     return list(db.Contacts.find({}, {"_id": 0}))
 #examples ----------
 

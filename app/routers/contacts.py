@@ -1,12 +1,12 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional
-from data.data_interactor import (
+from app.data.data_interactor import (
     create_contact as db_create_contact,
     get_all_contacts as db_get_all_contacts,
-    update_contact as db_update_contact,
-    delete_contact as db_delete_contact,
-    db_get_contact as get_contact,
+    # update_contact as db_update_contact,
+    # delete_contact as db_delete_contact,
+    # db_get_contact as get_contact,
     Contact as ContactModel,
 )
 
