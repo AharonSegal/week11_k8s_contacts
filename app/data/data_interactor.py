@@ -19,7 +19,7 @@ preview of a contact in the db:
     'phone_number': '077-7934083'}
 """
 from typing import List
-from app.data.db_use import db
+from data.db_use import db
 from pymongo import ReturnDocument
 from bson.objectid import ObjectId
 

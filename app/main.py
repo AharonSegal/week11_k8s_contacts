@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from app.routers.basic_test import router as db_test_router
-from app.routers.contacts import router as crud
+from routers.basic_test import router as db_test_router
+from routers.contacts import router as crud
 
 app = FastAPI(title="Contacts Manager")
 

@@ -1,1 +1,0 @@
-git commit -m"all endpoints working, still missing phone unique validation, fastapi local mongo in image"

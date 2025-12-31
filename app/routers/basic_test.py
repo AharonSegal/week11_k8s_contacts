@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.data.db_use import basic_crud_test
+from data.db_use import basic_crud_test
 
 router = APIRouter(prefix="/test",tags=["DB Test"])
 

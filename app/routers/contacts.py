@@ -17,7 +17,7 @@ from fastapi.responses import Response
 from pydantic import BaseModel, Field
 from typing import Optional
 from bson.objectid import ObjectId
-from app.data.data_interactor import (
+from data.data_interactor import (
     create_contact as db_create_contact,
     get_all_contacts as db_get_all_contacts,
     get_contact_by_id as db_get_contact_by_id,
