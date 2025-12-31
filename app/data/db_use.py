@@ -61,12 +61,12 @@ def basic_crud_test():
         return message_dict
 
     except Exception as e:
-        print("❌ error occurred while testing MongoDB connection:", e)
+        print("❌ error while testing MongoDB connection:", e)
         raise
 
     finally:
         client.close()
-        print("ℹ️ MongoDB client closed")
+        print("MongoDB client closed")
 
 
 
