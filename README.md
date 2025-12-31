@@ -1,28 +1,108 @@
 # week11_k8s_contacts
 
-## GIT BRANCHES
+## Project Overview
 
-branches:
-    dev/compose_api_and_mongo
-        all api endpoints created 
-        FastApi running locally
-        MongoDB running in image
+contacts manager API built with FastAPI and MongoDB 
 
-    dev/compose_api_and_mongo
-        all running by Docker_compose file
+Main features:
 
+- CRUD operations for contacts
+- Kubernetes manifests for API + MongoDB
 
-Project Description – What the project does + API endpoints
+Kubernetes Build:
 
-Prerequisites:
+* **Deployment** → runs Pods
+* **Service** → network access to Pods
+* **ConfigMap** → env vars
+* **PVC** → persistent storage
 
-Docker
-minikube (or other local Kubernetes)
-kubectl
-Setup Instructions – How to build and deploy
+cluster flow:
 
-build the cluster
-    kubectl apply -f k8/
+    Client
+        ↓
+    FastAPI Service (NodePort)
+        ↓
+    FastAPI Pod
+        ↓ (MONGO_URI = mongo:27017)
+    Mongo Service
+        ↓
+    Mongo Pod
+        ↓
+    Persistent Volume
 
-open the service 
-    minikube service fastapi
+## Git Branches
+
+- **dev/compose_api_and_mongo**
+    - all api endpoints created 
+    - FastApi running locally
+    - MongoDB running in image
+
+- **dev/compose_api_and_mongo**
+  - All API endpoints created
+  - FastAPI running locally
+  - MongoDB running in a Docker container
+  - Docker Compose setup for API + MongoDB together
+
+---
+
+1. **Start Minikube** 
+
+```bash
+minikube start
+```
+
+2. **Apply Kubernetes manifests**:
+
+```bash
+kubectl apply -f k8/
+```
+
+3. **Check that pods are running**:
+
+```bash
+kubectl get pods
+```
+expected output-> something both READY:
+NAME                      READY   STATUS    RESTARTS   AGE
+fastapi-75b68b69d-4kjck   1/1     Running   0          9m8s
+mongo-5fdd764968-wtl7x    1/1     Running   0          42m
+
+4. **Open the FastAPI service**:
+
+```bash
+minikube service fastapi
+```
+## API Endpoints
+
+**DB Test**
+
+    GET
+    /test/health
+    Health
+
+    GET
+    /test/db
+    Test Db Connection
+
+**Contacts**
+
+    GET
+    /contacts/
+    List Contacts
+
+    POST
+    /contacts/
+    Create Contact
+
+    GET
+    /contacts/{contact_id}
+    Get Contact By Id
+
+    PUT
+    /contacts/{contact_id}
+    Update Contact By Id
+
+    DELETE
+    /contacts/{contact_id}
+    Delete Contact
+
