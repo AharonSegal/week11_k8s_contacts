@@ -142,7 +142,8 @@ kubectl apply -f k8/fastapi-service.yaml
 💡 **Tip:** You can combine all YAMLs into one folder and run:
 
 ```bash
-kubectl apply -f k8s/
+kubectl apply -f k8/
+
 
 # opens communication to the specified service
  minikube service fastapi
